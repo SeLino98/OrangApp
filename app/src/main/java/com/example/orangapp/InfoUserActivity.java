@@ -79,10 +79,7 @@ public class InfoUserActivity extends AppCompatActivity {
 //        });
         activityInfoUserBinding.textView7.setText(currentUser.getEmail());
         activityInfoUserBinding.textView8.setText(currentUser.getUid());
-
-
     }
-
     @Override
     protected void onStart() {
         super.onStart();

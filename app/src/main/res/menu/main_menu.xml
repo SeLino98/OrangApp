@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/goto_main"
+    android:title="gotoMain"
+    app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/goto_category"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="category"
+        app:showAsAction="always" >
+    <menu><item
+        android:id="@+id/category_1"
+        android:title="1" />
+        <item
+            android:id="@+id/category_2"
+            android:title="2" />
+        <item
+            android:id="@+id/category_3"
+            android:title="3" />
+        <item
+            android:id="@+id/category_4"
+            android:title="4" ></item>
+    </menu>
+    </item>
+    <item
+        android:id="@+id/goto_option"
+        android:title="option"
+        app:showAsAction="always"/>
+
+</menu>
