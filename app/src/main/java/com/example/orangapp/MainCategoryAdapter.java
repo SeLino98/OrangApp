@@ -24,11 +24,14 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
     private List<String> uidList = new ArrayList<>();
     private FirebaseStorage storage;
     private Context context = null;
-    MainCategoryAdapter(List<PostTable> postTableList, List<String> uidList){
+    private int Category = 1;
+
+    public MainCategoryAdapter(){}
+
+    public MainCategoryAdapter(List<PostTable> postTableList, List<String> uidList){
         this.postTableList = postTableList;
         this.uidList = uidList;
         storage = FirebaseStorage.getInstance();
-
     }
 
 
@@ -40,15 +43,12 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<MainCategoryAdapte
         View view = inflater.inflate(R.layout.main_category_row, parent,false);
         MainCategoryAdapter.ViewHolderClass vhc = new ViewHolderClass(view);
         return vhc;
-//        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-//        View view = layoutInflater.inflate(R.layout.uploaded_image_item,parent,false);
-//        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
         holder.rowTextView.setText(postTableList.get(position).getTitle());
-
+        //holder.rowImageView.setImageResource(postTableList.get(position).getImageUrl();
         String url = postTableList.get(position).getImageUrl();
            Glide.with(context)
                 .load(url)

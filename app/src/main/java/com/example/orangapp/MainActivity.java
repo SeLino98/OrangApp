@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("dddddddddsd : ","MainOnCreate");
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -51,10 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
         //프래그 먼트 생성->안에 리사이클 뷰 띄우기
         MainPostFragment mainPostFragment = new MainPostFragment();
+        Log.d("dddddddddsd : ","Commit1");
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Log.d("dddddddddsd : ","Commit2");
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragment,mainPostFragment);
-        fragmentTransaction.commit();//프래그먼트 적용
+        fragmentTransaction.commit();//프래그먼트 적용<-
+        Log.d("dddddddddsd", "start");
+        Log.d("dddddddddsd", "end");
+
 
 
         //이벤트 클릭 리스너

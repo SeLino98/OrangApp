@@ -1,5 +1,6 @@
 package com.example.orangapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.orangapp.databinding.FragmentMainPostBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -26,12 +36,15 @@ import java.util.List;
 public class MainPostFragment extends Fragment {
 
 
+    //
+
     private List<PostTable> postTableList = new ArrayList<>();
     private List<String> uidList = new ArrayList<>();
-    private StorageReference listRef ;
+
     private FirebaseStorage storage;
     private String Category;
     FragmentMainPostBinding fragmentMainPostBinding;
+    private FirebaseDatabase firebaseDatabase;
 
 
     public MainPostFragment() {
@@ -42,29 +55,28 @@ public class MainPostFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//       Category = "1";
-         listRef = storage.getReference().child("Aimages/1");
+        Log.d("dddddddddsd : ","Frag_onCreate");
+        Log.d("Fragment1  : ","");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        Log.d("Fragment2 : ","");
+        firebaseDatabase.getReference().child("Post").child("Category").child("1")
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-//       listRef.listAll()
-//               .addOnSuccessListener(new OnSuccessListener<ListResult>() {
-//                   @Override
-//                   public void onSuccess(ListResult listResult) {
-//                       for (StorageReference prefix : listResult.getPrefixes()) {
-//                           Log.d("prefix",""+prefix);
-//                           // All the prefixes under listRef.
-//                           // You may call listAll() recursively on them.
-//                       }
-//                       for (StorageReference item : listResult.getItems()) {
-//                           // All the items under listRef.
-//                       }
-//                   }
-//               })
-//               .addOnFailureListener(new OnFailureListener() {
-//                   @Override
-//                   public void onFailure(@NonNull Exception e) {
-//                   }
-//               });
+              PostTable postTable = snapshot.getValue(PostTable.class);
+                Log.d("dddddddddsd",postTable.getTitle());
+                Log.d("dddddddddsd", postTable.getContent());
+                Log.d("dddddddddsd", postTable.getImageUrl());
+                Log.d("dddddddddsd", postTable.getUserUid());
+//                Log.d("dsdsdsdds",""+postTableList.size());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("dsdsdsdsdsdsdsdsd 4:", "");
 
+            }
+        });
     }
 
     //2. 프래그먼트에서 보여줄 뷰를 만든다.
@@ -76,7 +88,13 @@ public class MainPostFragment extends Fragment {
         MainCategoryAdapter adapter = new MainCategoryAdapter(postTableList,uidList);
         fragmentMainPostBinding.categoryRecycle.setAdapter(adapter);
         fragmentMainPostBinding.categoryRecycle.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        Log.d("dddddddddsd : ","2");
         return fragmentMainPostBinding.getRoot();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("dddddddddsd : ","");
+    }
 }

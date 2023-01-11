@@ -2,19 +2,17 @@ package com.example.orangapp;
 
 public class PostTable {
     private String imageUrl;
-    private String title ;
-    private String content ;
+    private String title;
+    private String content;
     private String userUid;
-    public PostTable(){
 
-    }
+    public PostTable(){}
     public String getImageUrl() {
         return imageUrl;
     }
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
     public String getTitle() {
         return title;
     }
@@ -34,7 +32,6 @@ public class PostTable {
     public String getUserUid() {
         return userUid;
     }
-
     public void setUserUid(String userUid) {
         this.userUid = userUid;
     }

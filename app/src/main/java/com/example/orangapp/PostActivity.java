@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.orangapp.databinding.ActivityPostBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,43 +26,48 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
+import com.example.orangapp.function.FirebaseFunction;
+
+
 
 public class PostActivity extends AppCompatActivity {
 
     //이미지 저장 파이어스토어
+    private FirebaseFunction DB;
     private FirebaseStorage mStorage;
     private StorageReference storageRef ;
+
     //리사이클뷰에 띄울 대표이미지 값 선정.
     private int mainImageNum = 1;
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth mFirebaseAuth;
     ActivityPostBinding activityPostBinding;
     ArrayList<Uri> uriList = new ArrayList<>();     // 이미지의 uri를 담을 ArrayList 객체
+
     //임의로 카테고리 지정 for Test.
     private String category = "1" ;
+
+
     //임의로 카테고리 지정
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityPostBinding = ActivityPostBinding.inflate(getLayoutInflater());
         setContentView(activityPostBinding.getRoot());
-
         //파이어베이스에 이미지 업로드 인스턴스와 참조생성
         mStorage = FirebaseStorage.getInstance();
         storageRef = mStorage.getReference();
-
         //파이어베이스 인증과 게시글 내용 등록 인스턴스 생성 .
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+
 
         //클릭 이벤트
         PostUploadButtonClickListener regClick = new PostUploadButtonClickListener();
         activityPostBinding.btnRegPost.setOnClickListener(regClick);
         UploadImageButtonClickListener imageClick = new UploadImageButtonClickListener();
         activityPostBinding.btnRegImage.setOnClickListener(imageClick);
-
     }
     class PostUploadButtonClickListener implements View.OnClickListener{
         @Override
@@ -74,6 +77,8 @@ public class PostActivity extends AppCompatActivity {
             String title = activityPostBinding.etTitle.getText().toString();
 
             //파이어베이스에 게시글 내용 업로드
+            DB.CreatePostTable(title,content,firebaseUser.getUid());
+
             PostTable postTable = new PostTable();
             postTable.setUserUid(firebaseUser.getUid());
             postTable.setContent(content);
@@ -83,12 +88,18 @@ public class PostActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+
+
                                 Toast.makeText(PostActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
+
                                 //이미지 저장.
                                 for(int i = 0; i<uriList.size();i++) {
+
                                     Log.d("uriListSize:",""+uriList.size());
+
                                     StorageReference riversRef = storageRef.child("Aimages/"+category+"/"+i+"");
                                     UploadTask uploadTask = riversRef.putFile(uriList.get(i));
+
                                     uploadTask.addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
@@ -103,13 +114,16 @@ public class PostActivity extends AppCompatActivity {
                                             Log.d("ImageUrl : ",""+taskSnapshot.toString());
                                             //메인이미지 폴더 생성. 메인에 리사이클뷰에 띄울 때 대표이미지로 활용할 예정
                                             if(mainImageNum == 1 ){
-                                                mDatabaseRef.child("Post").child("Category").child(category).child(title).child("MainImage").push().setValue(postTable);
+                                                mDatabaseRef.child("Post").child("Category").child(category).child(title).child("MainImage").push().setValue(postTable.getImageUrl());
                                             }
-                                            mDatabaseRef.child("Post").child("Category").child(category).child(title).child("Image").push().setValue(postTable);
+                                            mDatabaseRef.child("Post").child("Category").child(category).child(title).child("Image").push().setValue(postTable.getImageUrl());
                                             Toast.makeText(PostActivity.this, "업로드 성공", Toast.LENGTH_SHORT).show();
                                             mainImageNum ++;
                                         }
                                     });
+
+
+
                                 }
                                 //
                             }
@@ -118,11 +132,9 @@ public class PostActivity extends AppCompatActivity {
                             }
                         }
                     });
-
             finish();
         }
     }
-
     class UploadImageButtonClickListener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
@@ -133,7 +145,6 @@ public class PostActivity extends AppCompatActivity {
             startActivityForResult(intent, 2222);
         }
     }
-
     //이미지 등록 버튼 클릭 후 이미지 선택 후 돌아오는 메서드
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -167,13 +178,11 @@ public class PostActivity extends AppCompatActivity {
                             Log.e("ExceptionError","e : "+ e);
                         }
                     }
-
                     //xml 페이지에 이미지 업로드_어뎁터
                     PostImageAdapter adapter1 = new PostImageAdapter(uriList, getApplicationContext());
                     activityPostBinding.imageRecyclerView.setAdapter(adapter1);
                     RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true);
                     activityPostBinding.imageRecyclerView.setLayoutManager(layoutManager1);
-
 //                    postImageAdapter = new PostImageAdapter(uriList, getApplicationContext());
 //                    recyclerView.setAdapter(postImageAdapter);
 //                    recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
