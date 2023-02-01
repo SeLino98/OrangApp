@@ -35,4 +35,5 @@ public class PostTable {
     public void setUserUid(String userUid) {
         this.userUid = userUid;
     }
+    ///히히 git test
 }
