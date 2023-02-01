@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(activityMainBinding.getRoot());
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-//        //리사이클뷰 띄우기.
+//      //리사이클뷰 띄우기.
 //            //레이아웃 설정
-//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3);
-//        activityMainBinding.recycler.setLayoutManager(layoutManager);
-//            //어뎁터 삽입
-//        final  MainCategoryAdapter mainCategoryAdapter = new MainCategoryAdapter()
-//
+//      RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3);
+//      activityMainBinding.recycler.setLayoutManager(layoutManager);
+//          //어뎁터 삽입
+//      final  MainCategoryAdapter mainCategoryAdapter = new MainCategoryAdapter()
+
 
         //프래그 먼트 생성->안에 리사이클 뷰 띄우기
         MainPostFragment mainPostFragment = new MainPostFragment();
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         switch(id){
             case R.id.goto_main:
                 break;
-
             case R.id.category_1:
                 Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
                 break;
@@ -99,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.category_3:
                 break;
             case R.id.category_4:
+                Toast.makeText(this, "Test/!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.goto_option:
                 Intent intent = new Intent(MainActivity.this,OptionActivity.class);
