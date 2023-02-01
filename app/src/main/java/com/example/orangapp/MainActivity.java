@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("dddddddddsd", "start");
         Log.d("dddddddddsd", "end");
 
-
-
         //이벤트 클릭 리스너
         PostEditButtonClickListener click = new PostEditButtonClickListener();
         activityMainBinding.btnEditPost.setOnClickListener(click);
