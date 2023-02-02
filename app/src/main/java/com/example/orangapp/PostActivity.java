@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -27,7 +26,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
-import com.example.orangapp.function.FirebaseFunction;
+import com.example.orangapp.model.FirebaseFunction;
 
 
 
@@ -77,7 +76,7 @@ public class PostActivity extends AppCompatActivity {
             String title = activityPostBinding.etTitle.getText().toString();
 
             //파이어베이스에 게시글 내용 업로드
-            DB.CreatePostTable(title,content,firebaseUser.getUid());
+//            DB.CreatePostTable(title,content,firebaseUser.getUid());
 
             PostTable postTable = new PostTable();
             postTable.setUserUid(firebaseUser.getUid());
