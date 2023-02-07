@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     ActivityRegisterBinding activityRegisterBinding;
-    private FirebaseAuth mAuth;
+    private boolean checkPhone = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,79 +55,60 @@ public class RegisterActivity extends AppCompatActivity {
         public void onClick(View view) {
             String phoneNum = activityRegisterBinding.etUserPhone.getText().toString().trim();
             //if(valid is true){}
-
             sendAuthPhoneNum(phoneNum);
-
         }
     }
+    //이것만 RegisterActivity에 있음 되겠다.
     public boolean sendAuthPhoneNum(String phoneNum){
-        //String checkPhoneNum = "+82"+phoneNum;
         String checkPhoneNum = "+82"+phoneNum;
         Log.d("checkPhoneNum ", phoneNum);
+        UserModel UserDB = new UserModel();
+        Log.d("GETFIREBASAUTH",""+UserDB.getmFirebaseAuth());
         PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
+                PhoneAuthOptions.newBuilder(UserDB.getmFirebaseAuth())  //mAuth가 null이라 안됨 ,,,
                         .setPhoneNumber(checkPhoneNum)       // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)// Activity (for callback binding)
+                        .setActivity(this)
                         .setCallbacks(mCallback)
-                        // OnVerificationStateChangedCallbacks
                         .build();
-
         Log.d("PAGHODASF",""+options);
         PhoneAuthProvider.verifyPhoneNumber(options);
         return true;
     }
     // callback method is called on Phone auth provider.
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-
             // initializing our callbacks for on
             // verification callback method.
             mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        // below method is used when
-        // OTP is sent from Firebase
+        //전화번호는 확인 됐으나, 인증코드를 입력해야 하는 상태
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
-            // when we receive the OTP it
-            // contains a unique id which
-            // we are storing in our string
-            // which we have already created.
-            // verificationId = s;
-        }
-
-        // this method is called when user
-        // receive OTP from Firebase.
-        @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
-
-            // below line is used for getting OTP code
-            // which is sent in phone auth credentials.
-            final String code = phoneAuthCredential.getSmsCode();
-            Log.d("CODE", code+" ");
-            // checking if the code
-            // is null or not.
-            if (code != null) {
-                // if the code is not null then
-                // we are setting that code to
-                // our OTP edittext field.
-                // edtOTP.setText(code);
-
-                // after setting this code
-                // to OTP edittext field we
-                // are calling our verifycode method.
-                // verifyCode(code);
+            String verificationId = s;
+            Log.d("verfies",""+s);
+            if(verificationId!=null){
+                activityRegisterBinding.btnPhoneCheck.setText("인증완료");
+                activityRegisterBinding.btnPhoneCheck.setEnabled(false);
+                checkPhone = true;
             }
         }
-
+        //문자는 정상적으로 날라갔는데 밑에 메서드가 실행이 안 되는 이유??? 는 뭘까
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            final String code = phoneAuthCredential.getSmsCode();
+            Log.d("CODEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", code+" ");
+            if (code != null) {
+               activityRegisterBinding.etUserCheckPhoneNum.setText(code);
+            }
+        }
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-
+            Log.d("FIREBASEException : e",""+e);
         }
-        // callback method is called on Phone auth provider.
-
-
+        @Override
+        public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
+            super.onCodeAutoRetrievalTimeOut(s);
+        }
     };
 
     class RegisterUserButtonClickListener implements View
@@ -147,7 +128,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     boolean b = Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", userEmail);
                                     UserDB.inputUserData();
                                     Toast.makeText(RegisterActivity.this, "회원가입성공", Toast.LENGTH_SHORT).show();
-//                                    message.toastMessage(RegisterActivity.this,"회원가입성공");
                                     finish();
                                 }else{
                                     Log.w("", "createUserWithEmail:failure", task.getException());
@@ -155,5 +135,4 @@ public class RegisterActivity extends AppCompatActivity {
                           });
         }
     }
-
 }

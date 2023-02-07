@@ -88,6 +88,15 @@
                 android:inputType="textPersonName"
                 android:hint="전화번호를 입력하세요"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <EditText
+                android:id="@+id/et_userCheckPhoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="인증번호를 입력하세요"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             <Button
                 android:id="@+id/btn_phoneCheck"
                 android:layout_width="wrap_content"

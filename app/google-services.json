@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1094114744118",
+    "firebase_url": "https://orangapp-8a4a0-default-rtdb.firebaseio.com",
     "project_id": "orangapp-8a4a0",
     "storage_bucket": "orangapp-8a4a0.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1094114744118-0rsmu0of1scp1khe5cr7c258cp6t28si.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.orangapp",
+            "certificate_hash": "40ad0cb890bfbbe2bda06104e55cf8097d88d5c3"
+          }
+        },
         {
           "client_id": "1094114744118-rfalh3qbjds8fal1fnfdnamh9ide1i7i.apps.googleusercontent.com",
           "client_type": 3

@@ -33,6 +33,10 @@ public class UserModel {
         this.userAccount = new UserAccount();
     }
 
+    public FirebaseAuth getmFirebaseAuth() {
+        return mFirebaseAuth;
+    }
+
     public Task<AuthResult> getUserData(String userEmail, String userPwd){
         return mFirebaseAuth.createUserWithEmailAndPassword(userEmail,userPwd);
     }
@@ -48,12 +52,7 @@ public class UserModel {
     }
 
     public void inputUserData(){
-        // FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
-//        UserAccount account = new UserAccount();
-//        account.setUserEmail(userAccount.getUserEmail());
-//        account.setUserPwd(userAccount.getUserPwd());
-//        account.setUserUid(firebaseUser.getUid());
         userAccount.setUserUid(user.getUid());
         mDatabaseRef.child("UserAccount").child(userAccount.getUserUid()).setValue(userAccount);
     }
