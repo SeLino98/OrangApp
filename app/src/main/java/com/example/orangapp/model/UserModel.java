@@ -31,6 +31,7 @@ public class UserModel {
         this.mFirebaseAuth= FirebaseAuth.getInstance();
         this.mDatabaseRef= FirebaseDatabase.getInstance().getReference();
         this.userAccount = new UserAccount();
+        Log.d("Usermodel in firebase Auth ",mFirebaseAuth.getCurrentUser()+"");
     }
 
     public FirebaseAuth getmFirebaseAuth() {

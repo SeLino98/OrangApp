@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         if(currentUser != null){
          //로그인된 경우
             Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this,TestMainActivity.class);
             startActivity(intent);
             finish();
         }

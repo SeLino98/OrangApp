@@ -33,7 +33,8 @@ android {
 }
 
 dependencies {
-
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
     implementation platform('com.google.firebase:firebase-bom:31.2.0')

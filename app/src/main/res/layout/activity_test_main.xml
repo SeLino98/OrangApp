@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+    <!-- textView랑 button 등등은 나중에 프래그먼트로 이동할 예정. -->
+    <TextView
+        android:id="@+id/tv_userStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btn_editPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="게시글 쓰기" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그아웃" />
+
+    <Button
+        android:id="@+id/btn_userInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내 정보" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 게시글 프래그먼트 꼭 만들기 !!!
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment"
+                android:name="com.example.orangapp.MainPostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            -->
+        </LinearLayout>
+    </ScrollView>
+
+    <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/main_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:name="com.example.orangapp.MainPostFragment" />
+        </LinearLayout>
+    -->
+</LinearLayout>

@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         String checkPhoneNum = "+82"+phoneNum;
         Log.d("checkPhoneNum ", phoneNum);
         UserModel UserDB = new UserModel();
-        Log.d("GETFIREBASAUTH",""+UserDB.getmFirebaseAuth());
+        Log.d("GETFIREBASAUTH",""+UserDB.getmFirebaseAuth().getCurrentUser().toString());
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(UserDB.getmFirebaseAuth())  //mAuth가 null이라 안됨 ,,,
                         .setPhoneNumber(checkPhoneNum)       // Phone number to verify
@@ -80,7 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
             // initializing our callbacks for on
             // verification callback method.
             mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-        //전화번호는 확인 됐으나, 인증코드를 입력해야 하는 상태
+        //1. 전화번호는 확인 됐으나, 인증코드를 입력해야 하는 상태
+        //2. 대기 신호 UI만들어야 함.
+
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);

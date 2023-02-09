@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import com.example.orangapp.RegisterActivity;
+import com.example.orangapp.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +29,6 @@ public class Authentication extends ViewModel {
         this.mAuth = FirebaseAuth.getInstance();
 
     }
-
 
 }
 
