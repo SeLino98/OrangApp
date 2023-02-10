@@ -81,7 +81,7 @@ public class TestMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch(id){
-            case R.id.goto_main:
+            case R.id.search_bar:
                 break;
             case R.id.category_1:
                 Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();

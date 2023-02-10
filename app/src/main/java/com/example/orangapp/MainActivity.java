@@ -1,18 +1,12 @@
 package com.example.orangapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.SearchView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -103,9 +97,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem searchitem = menu.findItem(R.id.search_bar);
+        SearchView search1 = (SearchView) searchitem.getActionView();
+        search1.setQueryHint("검색어 입력") ;
+
+        //메뉴 아이템에 배치된 뷰가 접히거나 펼쳐질 때 반응하는 리스너
+
+
+
         return true;
     }
-//    @Override //액션바를 가져와서 화면 메뉴에 띄운다.
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    //    @Override //액션바를 가져와서 화면 메뉴에 띄운다.
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.main_menu,menu);
 //        //main_menu 커스텀 바를 액션바 메뉴로 띄우는 함수
