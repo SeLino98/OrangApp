@@ -2,6 +2,7 @@ package com.example.orangapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //네비게이션 실행 .
+//        CharSequence charSequence = 'ORANG' ;
+//        DrawerLayout drawer = activityMainBinding.drawerLayout.setDrawerTitle(GravityCompat.END,charSequence);
         DrawerLayout drawer = activityMainBinding.drawerLayout;
         NavigationView navigationView = activityMainBinding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -90,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //메인의 네비 컨트롤러를 실행한다.
         NavigationUI.setupWithNavController(navigationView, navController);
-//        NavigationUI.setupWithNavController(
-//                toolbar, navController, mAppBarConfiguration);
+
       }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

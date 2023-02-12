@@ -3,6 +3,11 @@ package com.example.orangapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.orangapp.databinding.ActivityTestMainBinding;
 import com.example.orangapp.databinding.ContentMainBinding;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -64,9 +70,7 @@ public class TestMainActivity extends AppCompatActivity {
    UserInfoButtonClickListener click2 = new UserInfoButtonClickListener();
         activityTestMainBinding.btnUserInfo.setOnClickListener(click2);
 
-    //툴바 상단 탭바를 수정
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+
 }
 
     @Override //액션바를 가져와서 화면 메뉴에 띄운다.

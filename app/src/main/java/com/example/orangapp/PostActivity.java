@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +14,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.orangapp.databinding.ActivityPostBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +36,12 @@ import com.example.orangapp.model.FirebaseFunction;
 
 
 public class PostActivity extends AppCompatActivity {
+
+
+    //TESTTTT
+    private Spinner spinner2;
+    ArrayList<String> arrayList;
+    ArrayAdapter<CharSequence> arrayAdapter;
 
     //이미지 저장 파이어스토어
     private FirebaseFunction DB;
@@ -60,6 +71,38 @@ public class PostActivity extends AppCompatActivity {
         //파이어베이스 인증과 게시글 내용 등록 인스턴스 생성 .
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+
+//        ArrayAdapter<CharSequence> sAdapter = ArrayAdapter.createFromResource(this, R.array.question, android.R.layout.simple_spinner_dropdown_item);
+//        Spinner spinner = new Spinner(this);
+//        spinner.setAdapter(sAdapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(PostActivity.this, "HIIHI", Toast.LENGTH_SHORT).show();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//            }
+//        });
+//        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+//                android.R.layout.simple_spinner_dropdown_item,
+//                R.array.question);
+        arrayAdapter = ArrayAdapter.createFromResource(this, R.array.question, android.R.layout.simple_spinner_dropdown_item);
+
+
+        spinner2 = (Spinner)findViewById(R.id.txt_question_type);
+        spinner2.setAdapter(arrayAdapter);
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),spinner2.getSelectedItem() +"가 선택되었습니다.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
 
         //클릭 이벤트

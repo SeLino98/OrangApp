@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="question">
+    <item name="id1" type="id">서비스문의</item>
+    <item name="id2" type="id">리뷰문의</item>
+    <item name="id3" type="id">제휴문의</item>
+    <item name="id4" type="id">업소문의</item>
+    <item name="id5" type="id">이벤트</item>
+    <item name="id6" type="id">기타</item>
+</string-array>
+</resources>
