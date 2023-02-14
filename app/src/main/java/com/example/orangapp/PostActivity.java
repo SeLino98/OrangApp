@@ -104,7 +104,6 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-
         //클릭 이벤트
         PostUploadButtonClickListener regClick = new PostUploadButtonClickListener();
         activityPostBinding.btnRegPost.setOnClickListener(regClick);

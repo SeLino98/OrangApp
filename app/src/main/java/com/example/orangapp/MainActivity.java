@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.orangapp.databinding.ActivityMainBinding;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         setSupportActionBar(activityMainBinding.appBarMain.toolbar);
+        CollapsingToolbarLayout toolBarLayout = activityMainBinding.appBarMain.toolbarLayout;
+        toolBarLayout.setTitle(getTitle());
 
         activityMainBinding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_sub_main, R.id.nav_sub_main1, R.id.nav_main)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //메인의 네비 컨트롤러를 실행한다.
-        NavigationUI.setupWithNavController(navigationView, navController);
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //메인의 네비 컨트롤러를 실행한다.
+//        NavigationUI.setupWithNavController(navigationView, navController);
 
       }
     @Override
