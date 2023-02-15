@@ -68,8 +68,6 @@
         android:layout_height="wrap_content"
         android:contextClickable="true"
         android:hint="">
-
-
     </Spinner>
 
     <TextView

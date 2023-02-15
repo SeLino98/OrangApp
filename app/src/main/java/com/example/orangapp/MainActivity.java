@@ -2,13 +2,13 @@ package com.example.orangapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,16 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.orangapp.adapter.ViewPagerAdapter;
 import com.example.orangapp.databinding.ActivityMainBinding;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,20 +73,26 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.btnUserInfo.setOnClickListener(click2);
        */
 
-        //툴바 상단 탭바를 수정
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         setSupportActionBar(activityMainBinding.appBarMain.toolbar);
         CollapsingToolbarLayout toolBarLayout = activityMainBinding.appBarMain.toolbarLayout;
         toolBarLayout.setTitle(getTitle());
 
-        activityMainBinding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+        //사이드 탭 추가
+        /*
+        final List<String> tabElement = Arrays.asList("오랑","게임","3","2","3","4");
+        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        ViewPagerAdapter viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        viewPager2.setAdapter(viewPagerAdapter1);
+        new TabLayoutMediator(tabLayout, viewPager2,(tab, position) -> {
+
+        }).attach(); */
+        //R.array.tab_names 폴더 값 세팅하기
+
+//        ViewPagerAdapter vpa = new ViewPagerAdapter(this)
+//        viewPager2.setAdapter();
+
 
         //네비게이션 실행 .
 //        CharSequence charSequence = 'ORANG' ;
@@ -96,7 +106,13 @@ public class MainActivity extends AppCompatActivity {
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration); //메인의 네비 컨트롤러를 실행한다.
 //        NavigationUI.setupWithNavController(navigationView, navController);
-
+        activityMainBinding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
       }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
         search1.setQueryHint("검색어 입력") ;
 
         //메뉴 아이템에 배치된 뷰가 접히거나 펼쳐질 때 반응하는 리스너
-
-
 
         return true;
     }

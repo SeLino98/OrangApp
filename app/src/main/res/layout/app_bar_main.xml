@@ -35,13 +35,17 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- 여기에 카드 뷰 추가 -->
 
+   <include
+       layout="@layout/tab_layout_menu"/>
 
-
-    <!--TEST를 위해 임시 레이아웃을 만듦-->
+    <!--
+    TEST를 위해 임시 레이아웃을 만듦
     <include
         layout="@layout/test_layout_for_scrolling" />
-    <!-- <include layout="@layout/content_main" /> -->
+   <include layout="@layout/content_main" />
+   -->
 
 
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_names">
+        <item name="id1" type="id">은평오랑</item>
+        <item name="id2" type="id">프로그램</item>
+        <item name="id3" type="id">청년정책</item>
+        <item name="id4" type="id">CJ나눔냉장고</item>
+        <item name="id5" type="id">안보여1</item>
+        <item name="id6" type="id">안보여2</item>
+    </string-array>
+</resources>
