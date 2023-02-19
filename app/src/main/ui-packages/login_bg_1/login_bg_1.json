@@ -1,0 +1,66 @@
+{
+  "name": "login_bg_1",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "YlGKZlCyTr2XdKgzPs84PX",
+    "node": "170:602",
+    "version": "3039655224",
+    "component-id": "e58face1722ba0ded4bd159e9319ef61f0f68545"
+  },
+  "default": "Login_bg 1",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "Login_bg 1"
+      }
+    ],
+    "modes": {
+      "Login_bg 1": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Login_bg 1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Login_bg 1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "login_bg_1.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Login_bg 1",
+      "size": {
+        "width": 384.0,
+        "height": 844.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

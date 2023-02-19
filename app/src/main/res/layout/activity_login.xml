@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/login_bg_1">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -54,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 >
-                <Button
+                <ImageButton
+                    android:src="@drawable/rectangle_26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_login"
